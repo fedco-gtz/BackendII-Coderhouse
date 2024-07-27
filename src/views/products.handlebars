@@ -1,0 +1,63 @@
+<main>
+    <section class="products">
+        <h1 class="title">PRODUCTOS</h1>
+
+        <div class="filter-container">
+            <label for="sortPrice">Ordenar por precio: </label>
+            <select id="sortPrice">
+                <option value="" selected disabled>Selecciona una opción</option>
+                <option value="asc">Ascendente</option>
+                <option value="desc">Descendente</option>
+            </select>
+        </div>
+        <br>
+        <div class="products-grid">
+            {{#each productos}}
+            <div class="product-card">
+                <h4 class="product--id">Código: {{this.code}}</h4>
+                <h1 class="product--title">{{this.title}}</h1>
+                <p class="product--price">Precio: ${{this.price}}</p>
+                <h2 class="product--stock">Stock disponible: {{this.stock}}</h2>
+                <h2 class="product--stock">Categoría: {{this.category}}</h2>
+                <br>
+                <a href="/products/{{_id}}" class="btn-link"><button class="btn-prima">VER DETALLE</button></a>
+                <br>
+                <a href="" class="btn-link"><button class="btn-secon">AGREGAR AL CARRITO</button></a>
+            </div>
+            {{/each}}
+        </div>
+        <br><br>
+        <div class="pagination-container">
+            {{#if hasNextPage}}
+            <a href="/products?page={{nextPage}}" class="pagination-link"> Siguiente </a>
+            {{/if}}
+            {{#if hasPrevPage}}
+            <a href="/products?page={{prevPage}}" class="pagination-link"> Anterior </a>
+            {{/if}}
+
+            <p class="pagination-text">Página {{currentPage}} de {{totalPages}}</p>
+        </div>
+    </section>
+</main>
+<script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+<script src="js/main.js"></script>
+
+
+<script>
+    document.getElementById('sortPrice').addEventListener('change', function () {
+        const sortOrder = this.value;
+        const currentUrl = new URL(window.location.href);
+        const page = currentUrl.searchParams.get('page') || 1;
+        currentUrl.searchParams.set('sort', sortOrder);
+        currentUrl.searchParams.set('page', page);
+        window.location.href = currentUrl.toString();
+    });
+
+    window.addEventListener('load', function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const sortParam = urlParams.get('sort');
+        if (sortParam) {
+            document.getElementById('sortPrice').value = sortParam;
+        }
+    });
+</script>

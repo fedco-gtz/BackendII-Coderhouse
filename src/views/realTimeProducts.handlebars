@@ -1,0 +1,29 @@
+<body>
+    <main>
+        <section class="products">
+            <h1 class="title">AGREGAR PRODUCTOS</h1>
+            <form id="formAddProduct">
+                <input type="text" id="title" placeholder="TÍTULO">
+                <input type="text" id="description" placeholder="DESCRIPCIÓN">
+                <input type="number" id="price" placeholder="PRECIO">
+                <input type="text" id="img" value="Sin Imagen">
+                <input type="text" id="code" placeholder="CÓDIGO">
+                <input type="number" id="stock" placeholder="STOCK">
+                <input type="text" id="category" placeholder="CATEGORÍA">
+                <select id="status">
+                    <option value="true"> ACTIVO </option>
+                    <option value="false"> INACTIVO </option>
+                </select>
+                <button type="button" id="btnEnviar">AGREGAR PRODUCTO</button>
+            </form>
+        </section>
+
+        <section class="products">
+            <h1 class="title">PRODUCTOS DISPONIBLES</h1>
+            <div class="container-products" id="containerProducts"></div>
+        </section>
+    </main>
+</body>
+
+<script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+<script src="js/main.js"></script>

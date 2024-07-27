@@ -1,0 +1,67 @@
+<body>
+    <main>
+        <section class="products">
+            <h1 class="main-title">BIENVENIDO A <span
+                    style="color: rgb(123, 182, 46); font-weight: bold; text-shadow: 3px 3px 1px rgba(0, 0, 0, 1);">VERDE</span><span
+                    style="color: rgb(12, 192, 223); font-weight: bold;text-shadow: 3px 3px 1px rgba(0, 0, 0, 1);">VITAL</span>
+            </h1>
+        </section>
+        <div class="button-container">
+            <a href="products" class="btn btn-primary">Productos</a>
+            <a href="realtimeproducts" class="btn btn-secondary">Administrar Productos</a>
+            <a href="/carts/668db75afe43de7c5c672e29" class="btn btn-tertiary">Carrito</a>
+        </div>
+        <br>
+        <p>Samuel y/o Allan, cuando se haga click en CARRITO, seras redirijido al carrito con ID
+            668db75afe43de7c5c672e29. De todos modos te dejo un listado de otros carritos.</p>
+        <p>Otros ID:</p>
+        <li>668db4c6fe43de7c5c672dc5</li>
+        <li>668db613fe43de7c5c672de5</li>
+        <li>668db66cfe43de7c5c672df3</li>
+    </main>
+</body>
+
+<style>
+    .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 34px;
+        font-weight: bold;
+        border: 3px solid white;
+        cursor: pointer;
+        border-radius: 20px;
+        text-transform: uppercase;
+        text-decoration: none;
+    }
+
+    .btn-primary {
+        background: -webkit-linear-gradient(90deg, #7bb62e, #44bb87);
+        background: linear-gradient(90deg, #7bb62e, #44bb87);
+        color: white;
+    }
+
+    .btn-secondary {
+        background: #44bb87;
+        color: white;
+    }
+
+    .btn-tertiary {
+        background: -webkit-linear-gradient(90deg, #44bb87, #0cc0df);
+        background: linear-gradient(90deg, #44bb87, #0cc0df);
+        color: white;
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover,
+    .btn-tertiary:hover {
+        opacity: 0.8;
+        color: black;
+        border: 3px solid black;
+    }
+</style>
