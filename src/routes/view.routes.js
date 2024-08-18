@@ -108,4 +108,28 @@ router.get("/carts/:cid", async (req, res) => {
     }
 });
 
+// Ruta para registrar usuarios
+router.get("/register", (req, res) => {
+    if (req.session.login) {
+        return res.redirect("/profile");
+    }
+    res.render("register", { isRegisterPage: true });
+})
+
+// Ruta para iniciar sesión
+router.get("/login", (req, res) => {
+    if (req.session.login) {
+        return res.redirect("/profile");
+    }
+    res.render("login", { isRegisterPage: true });
+})
+
+// Ruta para ver el perfil
+router.get("/profile", (req, res) => {
+    if (!req.session.login) {
+        return res.redirect("/login");
+    }
+    res.render("profile", { isRegisterPage: true, user: req.session.user } );
+})
+
 export default router;

@@ -5,15 +5,37 @@ import { Server } from 'socket.io';
 import productsRouter from './routes/products.routes.js';
 import cartsRouter from './routes/carts.routes.js';
 import viewsRouter from './routes/view.routes.js';
+import sessionsRouter from './routes/sessions.routes.js';
+import cookieParser from 'cookie-parser';
+import session from 'express-session';
+import FileStore from 'session-file-store';
+import MongoStore from 'connect-mongo';
+import initializePassport from './config/passport.config.js';
+import passport from "passport";
 import "./database.js"
 
 const app = express();
 const port = 8080;
+const fileStore = FileStore(session);
 
 // Middleware //
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+app.use(cookieParser());
+app.use(session({
+  secret: "fedeCoder",
+  resave: true,
+  saveUninitialized: true,
+  store: MongoStore.create({
+    mongoUrl: "mongodb+srv://gutierrezfedericog:ZGu2Q70OsMrmWJL9@cluster0.yex3ufx.mongodb.net/Login?retryWrites=true&w=majority&appName=Cluster0"
+  })
+}));
+
+// Passport //
+initializePassport(); 
+app.use(passport.initialize()); 
+app.use(passport.session());
 
 // Express Handlebars //
 app.engine('handlebars', engine());
@@ -24,6 +46,7 @@ app.set('views', './src/views');
 app.use('/', productsRouter);
 app.use('/', cartsRouter);
 app.use('/', viewsRouter);
+app.use ('/', sessionsRouter);
 
 // Servidor //
 const httpServer = app.listen(port, () => {

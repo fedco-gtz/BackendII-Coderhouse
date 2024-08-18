@@ -11,11 +11,15 @@
 </head>
 
 <body>
+    {{#unless isRegisterPage}}
     <header>
         <div class="nav-container">
             <nav>
                 <ul>
                     <li><a href="/">INICIO</a></li>
+                    <li><a href="/register">REGISTRARSE</a></li>
+                    <li><a href="/login">INICIAR SESIÓN</a></li>
+
                     <li><a href="/realtimeproducts">ADMINISTRAR PRODUCTOS</a></li>
                     <li><a href="/api/products">API PRODUCTOS</a></li>
                     <li><a href="/api/carts">API CARRITO</a></li>
@@ -30,11 +34,18 @@
         <p>ENVIOS GRATIS: 🛵 CABA $20.000 - 📦 TODO EL PAIS $50.000 Y HASTA 3 CUOTAS S/ INTERÉS 💳 - 10% PAGO EFECTIVO
             💸</p>
     </div>
+    {{/unless}}
+
+
     {{{body}}}
+
+
+    {{#unless isRegisterPage}}
     <footer>
         <p>&copy; 2024 <span style="color: rgb(193, 255, 114); font-weight: bold;">Verde</span><span
                 style="color: rgb(12, 192, 223); font-weight: bold;">Vital</span>. Todos los derechos reservados.</p>
     </footer>
+    {{/unless}}
 </body>
 
 </html>
