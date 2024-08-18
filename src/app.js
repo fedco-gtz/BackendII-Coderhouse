@@ -31,10 +31,8 @@ app.use(session({
     mongoUrl: "mongodb+srv://gutierrezfedericog:ZGu2Q70OsMrmWJL9@cluster0.yex3ufx.mongodb.net/ecommerce?retryWrites=true&w=majority&appName=Cluster0"
   })
 }));
-
-// Passport //
-initializePassport(); 
 app.use(passport.initialize()); 
+initializePassport(); 
 app.use(passport.session());
 
 // Express Handlebars //
