@@ -1,11 +1,13 @@
 import passport from "passport";
 import local from "passport-local";
 import GitHubStrategy from "passport-github2";
+import jwt from "passport-jwt";
 import userModel from "../dao/models/user.model.js";
 import { createHash, isValidPassword } from "../utils/hashbcrypt.js";
 
 const LocalStrategy = local.Strategy;
-
+const JWTStrategy = jwt.Strategy;
+const ExtractJwt = jwt.ExtractJwt;
 
 const initializePassport = () => {
     passport.use("register", new LocalStrategy({
