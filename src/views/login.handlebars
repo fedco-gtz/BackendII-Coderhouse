@@ -18,8 +18,12 @@
                     <input class="boton" type="submit" value="Iniciar Sesión">
                 </div>
                 <div>
+                    <a class="botonGithub" href="/github">Github</a>
+                    <!-- <a class="botonFacebook" href="/auth/facebook">Facebook</a>  -->
+                </div>
+                <div class="help">
                     <p>¿Aún no estás registrado?</p>
-                    <a class="ayuda" href="/register">Registrarse</a>
+                    <a class="helpLink" href="/register">Registrarse</a>
                 </div>
             </form>
         </section>
@@ -82,7 +86,7 @@
                     width: 100%;
                     padding: 40px;
 
-                    input{
+                    input {
                         width: 100%;
                         margin-bottom: 20px;
                         height: 40px;
@@ -106,14 +110,58 @@
                         font-size: 1.5rem;
                         font-weight: 700;
                     }
+
+                    .botonGithub {
+                        width: auto;
+                        box-sizing: content-box;
+                        background-color: rgba(0, 0, 0, 0.87);
+                        border: 2px solid rgba(0, 0, 0, 0.87);
+                        color: #ffffff;
+                        padding: 5px;
+                        border-radius: 5px;
+                        font-size: 1.5rem;
+                        font-weight: 700;
+                        text-decoration: none;
+                    }
+
+                    .botonGithub:hover,
+                    .botonFacebook:hover,
+                    .boton:hover {
+                        border: 2px solid rgba(255, 255, 255, 0.87);
+                    }
+
+                    .botonFacebook {
+                        width: auto;
+                        box-sizing: content-box;
+                        background-color: rgba(59, 89, 152, 0.87);
+                        border: 2px solid rgba(59, 89, 152, 0.87);
+                        color: #ffffff;
+                        padding: 5px;
+                        margin 5px;
+                        border-radius: 5px;
+                        font-size: 1.5rem;
+                        font-weight: 700;
+                        text-decoration: none;
+                    }
+
+                    .help {
+                        padding-top: 20px;
+                        font-size: 1rem;
+                        text-decoration: none;
+                        color: #ffffff;
+                        font-weight: 700;
+
+                        .helpLink {
+                            color: #787878;
+
+                            &:hover {
+                               color: rgba(193, 255, 114, 0.87); 
+                               font-weight: 700;
+                            }
+                        }
+
+                    }
                     
-                    .ayuda {
-                    margin-top: 40px;
-                    font-size: 1rem;
-                    text-decoration: none;
-                    color: #787878;
-                    font-weight: 400;
-                }
                 }
             }
         }
