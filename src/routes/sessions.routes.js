@@ -4,7 +4,7 @@ import passport from "passport";
 import jwt from "jsonwebtoken";
 
 router.post("/register", passport.authenticate("register", {
-    failureRedirect: "/failedregister"
+    failureRedirect: "/failed"
 }), async (req, res) => {
     req.session.user = {
         first_name: req.user.first_name,
@@ -25,12 +25,8 @@ router.post("/register", passport.authenticate("register", {
     res.redirect("/profile");
 })
 
-router.get("/failedregister", (req, res) => {
-    res.send("Registro fallido");
-})
-
 router.post("/login", passport.authenticate("login", {
-    failureRedirect: "/api/sessions/faillogin"
+    failureRedirect: "/failed"
 }), async (req, res) => {
     req.session.user = {
         first_name: req.user.first_name,
@@ -43,15 +39,16 @@ router.post("/login", passport.authenticate("login", {
     res.redirect("/profile");
 })
 
-router.get("/faillogin", (req, res) => {
-    res.send("Fallo todo el login!!!");
-})
-
 router.get("/logout", (req, res) => {
     if (req.session.login) {
         req.session.destroy();
     }
     res.redirect("/");
+})
+
+router.get("/failed", (req, res) => {
+    res.render("failed");
+
 })
 
 router.get("/current", passport.authenticate("jwt", { session: false }), (req, res) => {
