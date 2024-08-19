@@ -109,7 +109,7 @@ router.get("/carts/:cid", async (req, res) => {
 });
 
 // Ruta para registrar usuarios
-router.get("/register", (req, res) => {
+router.get("/api/sessions/register", (req, res) => {
     if (req.session.login) {
         return res.redirect("/profile");
     }
@@ -117,7 +117,7 @@ router.get("/register", (req, res) => {
 })
 
 // Ruta para iniciar sesión
-router.get("/login", (req, res) => {
+router.get("/api/sessions/login", (req, res) => {
     if (req.session.login) {
         return res.redirect("/profile");
     }
@@ -125,7 +125,7 @@ router.get("/login", (req, res) => {
 })
 
 // Ruta para ver el perfil
-router.get("/profile", (req, res) => {
+router.get("/api/sessions/profile", (req, res) => {
     if (!req.session.login) {
         return res.redirect("/login");
     }

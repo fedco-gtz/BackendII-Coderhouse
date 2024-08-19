@@ -44,7 +44,7 @@ app.set('views', './src/views');
 app.use('/', productsRouter);
 app.use('/', cartsRouter);
 app.use('/', viewsRouter);
-app.use ('/', sessionsRouter);
+app.use ('/api/sessions/', sessionsRouter);
 
 // Servidor //
 const httpServer = app.listen(port, () => {

@@ -4,7 +4,7 @@ import passport from "passport";
 import jwt from "jsonwebtoken";
 
 router.post("/register", passport.authenticate("register", {
-    failureRedirect: "/failed"
+    failureRedirect: "failed"
 }), async (req, res) => {
     req.session.user = {
         first_name: req.user.first_name,
@@ -22,11 +22,11 @@ router.post("/register", passport.authenticate("register", {
     })
 
     // res.redirect("/api/sessions/current"); //
-    res.redirect("/profile");
+    res.redirect("/api/sessions/profile");
 })
 
 router.post("/login", passport.authenticate("login", {
-    failureRedirect: "/failed"
+    failureRedirect: "failed"
 }), async (req, res) => {
     req.session.user = {
         first_name: req.user.first_name,
@@ -36,7 +36,7 @@ router.post("/login", passport.authenticate("login", {
     }
     req.session.login = true;
 
-    res.redirect("/profile");
+    res.redirect("/api/sessions/profile");
 })
 
 router.get("/logout", (req, res) => {
@@ -66,7 +66,7 @@ router.get("/github", passport.authenticate("github", { scope: ["user:email"] })
 router.get("/githubcallback", passport.authenticate("github", { failureRedirect: "/login" }), async (req, res) => {
     req.session.user = req.user;
     req.session.login = true;
-    res.redirect("/profile");
+    res.redirect("/api/sessions/profile");
 })
 
 export default router; 
