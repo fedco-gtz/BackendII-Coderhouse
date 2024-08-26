@@ -11,12 +11,13 @@ import session from 'express-session';
 import FileStore from 'session-file-store';
 import MongoStore from 'connect-mongo';
 import initializePassport from './config/passport.config.js';
+import configObject from './config/config.js';
 import passport from "passport";
 import "./database.js"
 
 const app = express();
-const port = 8080;
 const fileStore = FileStore(session);
+const { PORT, MONGO_URL } = configObject
 
 // Middleware //
 app.use(express.json());
@@ -47,9 +48,9 @@ app.use('/', viewsRouter);
 app.use ('/api/sessions/', sessionsRouter);
 
 // Servidor //
-const httpServer = app.listen(port, () => {
+const httpServer = app.listen(PORT, () => {
   displayRoutes(app)
-  console.log(`Servidor escuchando en http://localhost:${port}`);
+  console.log(`Servidor escuchando en http://localhost:${PORT}`);
 });
 
 import ProductManager from './dao/db/productManagerDb.js';

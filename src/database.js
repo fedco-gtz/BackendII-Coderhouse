@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
+import configObject from "./config/config.js";
 
-mongoose.connect("mongodb+srv://gutierrezfedericog:ZGu2Q70OsMrmWJL9@cluster0.yex3ufx.mongodb.net/ecommerce?retryWrites=true&w=majority&appName=Cluster0")
+const { MONGO_URL } = configObject
+
+mongoose.connect(MONGO_URL)
     .then(() => console.log("Base de datos conectada correctamente"))
     .catch((error) => console.log("Hay algun error", error))
