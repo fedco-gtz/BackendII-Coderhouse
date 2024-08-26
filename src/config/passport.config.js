@@ -3,26 +3,30 @@ import local from "passport-local";
 import GitHubStrategy from "passport-github2";
 import jwt from "passport-jwt";
 import userModel from "../dao/models/user.model.js";
+import CartManager from "../dao/db/cartManagerDb.js";
 import { createHash, isValidPassword } from "../utils/hashbcrypt.js";
 
 const LocalStrategy = local.Strategy;
 const JWTStrategy = jwt.Strategy;
 const ExtractJwt = jwt.ExtractJwt;
+const cartManager = new CartManager();
 
 const initializePassport = () => {
     passport.use("register", new LocalStrategy({
         passReqToCallback: true,
         usernameField: "email"
     }, async (req, username, password, done) => {
-        const { first_name, last_name, email, age } = req.body;
+        const { first_name, last_name, email, cart_id, age } = req.body;
 
         try {
             let user = await userModel.findOne({ email: email });
             if (user) return done(null, false);
+            const cart = await cartManager.createCart();
             let newUser = {
                 first_name,
                 last_name,
                 email,
+                cartId: cart._id,
                 age,
                 password: createHash(password)
             }
@@ -69,11 +73,13 @@ const initializePassport = () => {
         try {
             let user = await userModel.findOne({ email: profile._json.email });
             if (!user) {
+                const cart = await cartManager.createCart();
                 let newUser = {
                     first_name: profile._json.name,
                     last_name: " ",
                     age: 18,
                     email: profile._json.email,
+                    cartId: cart._id,
                     password: " "
                 }
                 let result = await userModel.create(newUser);
