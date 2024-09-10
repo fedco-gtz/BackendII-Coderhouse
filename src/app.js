@@ -12,8 +12,9 @@ import FileStore from 'session-file-store';
 import MongoStore from 'connect-mongo';
 import initializePassport from './config/passport.config.js';
 import configObject from './config/config.js';
-import passport from "passport";
-import "./database.js"
+import passport from 'passport';
+import cors from 'cors';
+import './database.js'
 
 const app = express();
 const fileStore = FileStore(session);
@@ -35,6 +36,7 @@ app.use(session({
 app.use(passport.initialize()); 
 initializePassport(); 
 app.use(passport.session());
+app.use(cors());
 
 // Express Handlebars //
 app.engine('handlebars', engine());
