@@ -1,6 +1,4 @@
-import FileSystemProductsDAO from './fileSystemProductsDao.js';
-import MongoDBProductsDAO from './mongoDbProductsDao.js';
-import MemoryProductsDAO from './memoryProductsDao.js';
+import MongoDBProductsDAO from './db/productManagerDb.js';
 import config from '../config/config.js'
 
 let DAO; 
@@ -19,4 +17,4 @@ switch(config.persistence) {
         throw new Error("Persistencia no valida"); 
 }
 
-export default DAO; 
+export default DAO;
