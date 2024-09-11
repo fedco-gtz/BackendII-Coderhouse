@@ -1,0 +1,24 @@
+[
+  {
+    "id": "20230",
+    "title": "JABONERA DE BAMBÚ NATURAL",
+    "description": "- Jabonera de Bambú Moso 🐼 <br> - Medidas: 17cm largo x 2cm alto x 9,5 cm ancho 📏",
+    "price": "9900",
+    "code": "B01",
+    "stock": "34",
+    "category": "Baño",
+    "status": true,
+    "thumbnails": []
+  },
+  {
+    "id": "20101",
+    "title": "JABONERA DE MADERA NATURAL",
+    "description": "- Jabonera hecha artesanalmente en madera 🪵 <br> - Medidas: 16,5cm largo x 9,5cm ancho 📏",
+    "price": "5450",
+    "code": "B02",
+    "stock": "23",
+    "category": "Baño",
+    "status": true,
+    "thumbnails": []
+  }
+]

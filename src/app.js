@@ -55,6 +55,7 @@ const httpServer = app.listen(PORT, () => {
   console.log(`Servidor escuchando en http://localhost:${PORT}`);
 });
 
+/*
 import ProductManager from './dao/db/productManagerDb.js';
 const productManager = new ProductManager('./dao/fs/data/products.json');
 import CartManager from './dao/db/cartManagerDb.js';
@@ -89,3 +90,4 @@ io.on('connection', (socket) => {
       console.log('Cliente Desconectado');
   });
 });
+*/

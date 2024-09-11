@@ -1,6 +1,6 @@
-import ProductManager from "../dao/db/productManagerDb.js";
+import DAO from "../dao/factory.js";
+import JugueteDTO from "../dto/product.dto.js";
 
-const productManager = new ProductManager();
 
 export const getProductById = async (req, res) => {
     const id = req.params.pid;

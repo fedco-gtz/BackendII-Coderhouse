@@ -1,7 +1,13 @@
 import { promises as fs } from "fs";
+import productModel from "./models/product.model.js";
+
+const path = './data/products.json';
 
 class ProductManager {
     constructor(path) {
+        if (typeof path !== 'string' || path.trim() === '') {
+            throw new Error('El valor del path debe ser una cadena no vacía.');
+        }
         this.products = [];
         this.path = path;
     }
@@ -113,16 +119,19 @@ class ProductManager {
         }
     }
 
-    async readFile() {
+    async readFile(path = this.path) {
+        if (typeof path !== 'string' || !path) {
+            throw new TypeError('El argumento "path" debe ser una cadena no vacía.');
+        }
         try {
-            const respuesta = await fs.readFile(this.path, "utf-8");
+            const respuesta = await fs.readFile(path, "utf-8");
             const arrayProducts = JSON.parse(respuesta);
             return arrayProducts;
         } catch (error) {
             if (error.code === 'ENOENT') {
                 return [];
             }
-            console.log("Error al leer un archivo", error);
+            console.log("Error al leer el archivo", error);
             throw error;
         }
     }
@@ -132,6 +141,16 @@ class ProductManager {
             await fs.writeFile(this.path, JSON.stringify(arrayProducts, null, 2));
         } catch (error) {
             console.log("Error al guardar el archivo", error);
+            throw error;
+        }
+    }
+
+    async getProductsTotal() {
+        try {
+            const productos = await productModel.find();
+            return productos;
+        } catch (error) {
+            console.log("Error al obtener los productos", error);
             throw error;
         }
     }

@@ -1,4 +1,4 @@
-import productModel from "../models/product.model.js";
+import productModel from "./models/product.model.js";
 
 class ProductManager {
     async addProduct({ title, description, price, img, code, stock, category, thumbnails }) {

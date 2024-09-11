@@ -9,7 +9,8 @@ dotenv.config({
 
 const configObject = {
     PORT: process.env.PORT, 
-    MONGO_URL: process.env.MONGO_URL
+    MONGO_URL: process.env.MONGO_URL,
+    persistence: process.env.PERSISTENCE || "file"
 }
 
 export default configObject; 
