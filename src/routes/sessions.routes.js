@@ -18,3 +18,13 @@ router.get("/github", passport.authenticate("github", { scope: ["user:email"] })
 router.get("/githubcallback", passport.authenticate("github", { failureRedirect: "/login" }), userController.githubCallback);
 
 export default router;
+
+/* 
+
+
+router.get('/current', passport.authenticate('jwt', { session: false }), userController.current);
+
+
+
+export default router;
+*/
