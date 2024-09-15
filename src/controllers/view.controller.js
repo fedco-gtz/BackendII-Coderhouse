@@ -15,7 +15,7 @@ export const renderRealTimeProducts = async (req, res) => {
             const { _id, ...rest } = producto.toObject();
             return { _id, ...rest };
         });
-        res.render("realtimeproducts", { productos: nuevoArray });
+        res.render("realtimeproducts", { productos: nuevoArray, isRegisterPage: true, user: req.session.user });
     } catch (error) {
         console.error("Error al obtener productos", error);
         res.status(500).json({ status: 'error', error: "Error interno del servidor" });
@@ -42,7 +42,9 @@ export const renderProducts = async (req, res) => {
             prevPage: productos.prevPage,
             nextPage: productos.nextPage,
             currentPage: productos.page,
-            totalPages: productos.totalPages
+            totalPages: productos.totalPages,
+            isRegisterPage: true, 
+            user: req.session.user
         });
     } catch (error) {
         console.error("Error al obtener productos", error);

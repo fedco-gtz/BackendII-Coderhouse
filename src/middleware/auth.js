@@ -1,17 +1,15 @@
-export function soloAdmin(req, res, next) {
+export function onlyAdmin(req, res, next) {
     if(req.user.role === "admin") {
         next(); 
     } else {
-        res.status(403).send("Acceso denegado, este lugar es solo para admin queridooo"); 
+        res.status(403).send("No tenes acceso a las funciones de administrador del sitio"); 
     }
 }
 
-
-export function soloUser(req, res, next) {
+export function onlyUser(req, res, next) {
     if(req.user.role === "user") {
         next(); 
     } else {
-        res.status(403).send("Acceso denegado, este lugar es solo para usuarios comunachos");
+        res.status(403).send("No tenes acceso a la tienda");
     }
-
 }

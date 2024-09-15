@@ -1,16 +1,16 @@
 import { Router } from 'express';
 import { renderHome, renderRealTimeProducts, renderProducts, renderProductDetails, renderCart, renderRegister, renderLogin, renderProfile } from '../controllers/view.controller.js';
-
+import { onlyAdmin, onlyUser } from '../middleware/auth.js';
 const router = Router();
 
 // Ruta para hacer funcional home.handelbars
 router.get("/", renderHome);
 
 // Ruta para hacer funcional realTimeProducts.handelbars
-router.get('/realtimeproducts', renderRealTimeProducts);
+router.get('/api/sessions/realtimeproducts', onlyAdmin, renderRealTimeProducts);
 
 // Rutas para hacer funcional products.handelbars
-router.get("/products", renderProducts);
+router.get("/api/sessions/products", onlyUser ,renderProducts);
 
 router.get("/products/:pid", renderProductDetails);
 

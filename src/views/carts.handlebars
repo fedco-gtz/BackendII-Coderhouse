@@ -5,15 +5,46 @@
       <div class="product-card">
         {{#each productos}}
         <div class="product--card">
-        <h1 class="product--title">{{this.product.title}}</h1>
-        <p class="product--stock">Precio unitario: ${{this.product.price}} | Cantidad: {{this.quantity}}</p>
+          <h1 class="product--title">{{this.product.title}}</h1>
+          <p class="product--stock">Precio unitario: ${{this.product.price}} | Cantidad: {{this.quantity}}</p>
         </div>
         {{/each}}
+      </div>
+
+      <form action="/api/carts/{{cartId}}/purchase" method="POST">
+        <button type="submit">Finalizar Compra</button>
+      </form>
+
+      <div>
+        <a href="/api/sessions/products">Volver a Productos</a>
       </div>
     </section>
   </main>
   <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
   <script src="js/main.js"></script>
+  <script>
+      function removeFromCart(productId) {
+        fetch(`/api/carts/remove-product`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ productId }),
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (data.message) {
+              alert('Product removed from cart');
+              window.location.reload();
+            } else {
+              alert('Error removing product from cart');
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+        }
+  </script>
   <style>
     * {
       font-family: Arial, sans-serif;
@@ -132,6 +163,7 @@
       background-color: rgb(220, 220, 220);
       margin: 10px;
     }
+
     .product-card {
       flex: 0 0 calc(33.333% - 20px);
       box-sizing: border-box;
