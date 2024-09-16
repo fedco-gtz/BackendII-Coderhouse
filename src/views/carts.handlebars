@@ -1,4 +1,25 @@
 <body>
+  <header>
+    <div class="paragraph">
+      <p>Bienvenida/o {{user.email}}</p>
+    </div>
+    <div class="nav-container">
+      <nav>
+        <ul>
+          <li><a href="/api/sessions/profile">MI PERFIL</a></li>
+          <li><a href="/api/sessions/logout">CERRAR SESIÓN</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="logo-container">
+      <img src="images/pages/logo.png" alt="Logo de VerdeVital" class="logo">
+    </div>
+  </header>
+
+  <div class="text">
+    <p>ENVIOS GRATIS: 🛵 CABA $20.000 - 📦 TODO EL PAIS $50.000 Y HASTA 3 CUOTAS S/ INTERÉS 💳 - 10% PAGO EFECTIVO
+      💸</p>
+  </div>
   <main>
     <section class="products">
       <h1 class="title">CARRITO DE COMPRAS</h1>
@@ -10,190 +31,246 @@
         </div>
         {{/each}}
       </div>
-
-      <form action="/api/carts/{{cartId}}/purchase" method="POST">
-        <button type="submit">Finalizar Compra</button>
-      </form>
-
-      <div>
-        <a href="/api/sessions/products">Volver a Productos</a>
-      </div>
+      <br>
+      <section class="container">
+                <div>
+          <a class="btn-secon" href="/api/sessions/products">IR A PRODUCTOS</a>
+        </div>
+        <form action="/carts/{{user.cartId}}/purchase" method="POST">
+          <button class="btn-prima" type="submit">FINALIZAR COMPRA</button>
+        </form>
+      </section>
     </section>
   </main>
-  <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
-  <script src="js/main.js"></script>
-  <script>
-      function removeFromCart(productId) {
-        fetch(`/api/carts/remove-product`, {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ productId }),
-        })
-          .then(response => response.json())
-          .then(data => {
-            if (data.message) {
-              alert('Product removed from cart');
-              window.location.reload();
-            } else {
-              alert('Error removing product from cart');
-            }
-          })
-          .catch(error => {
-            console.error('Error:', error);
-          });
+  <footer>
+    <p>&copy; 2024 <span style="color: rgb(193, 255, 114); font-weight: bold;">Verde</span><span
+        style="color: rgb(12, 192, 223); font-weight: bold;">Vital</span>. Todos los derechos reservados.</p>
+  </footer>
+</body>
+
+<script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
+<script src="js/main.js"></script>
+<script>
+  function removeFromCart(productId) {
+    fetch(`/api/carts/remove-product`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ productId }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.message) {
+          alert('Product removed from cart');
+          window.location.reload();
+        } else {
+          alert('Error removing product from cart');
         }
-  </script>
-  <style>
-    * {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }
+</script>
+<style>
+  * {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-    header {
-      background-image: url("../images/pages/frontPage.png");
-      background-size: cover;
-      background-position: center;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+  header {
+    background-image: url("../images/pages/frontPage.png");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    .nav-container {
-      background-color: rgb(36, 36, 36);
-      text-align: center;
-      justify-content: center;
-      font-weight: bold;
-      width: 100%;
-      height: 40px;
-    }
+  .nav-container {
+    background-color: rgb(36, 36, 36);
+    text-align: center;
+    justify-content: center;
+    font-weight: bold;
+    width: 100%;
+    height: 40px;
+  }
 
-    .nav-container nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      margin-top: 10px;
-    }
+  .nav-container nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
 
-    .nav-container nav ul li {
-      margin: 0 25px;
-    }
+  .nav-container nav ul li {
+    margin: 0 25px;
+  }
 
-    .nav-container nav ul li a {
-      color: white;
-      text-decoration: none;
-    }
+  .nav-container nav ul li a {
+    color: white;
+    text-decoration: none;
+  }
 
-    .nav-container nav ul li a:hover {
-      text-decoration: none;
-      color: rgba(193, 255, 114, 0.87);
-      border-bottom-style: solid;
-      border-bottom-color: rgba(12, 192, 223, 0.87);
-    }
+  .nav-container nav ul li a:hover {
+    text-decoration: none;
+    color: rgba(193, 255, 114, 0.87);
+    border-bottom-style: solid;
+    border-bottom-color: rgba(12, 192, 223, 0.87);
+  }
 
-    .logo-container {
-      margin: 20px 0;
-    }
+  .logo-container {
+    margin: 20px 0;
+  }
 
-    .logo-container .logo {
-      max-height: 400px;
-    }
+  .logo-container .logo {
+    max-height: 400px;
+  }
 
-    .text {
-      background-color: rgb(36, 36, 36);
-      color: white;
-      text-align: center;
-      padding: 5px 0;
-      font-weight: bold;
-    }
+  .text {
+    background-color: rgb(36, 36, 36);
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+    font-weight: bold;
+  }
 
-    main {
-      padding: 20px;
-    }
+  main {
+    padding: 20px;
+  }
 
-    .product-list,
-    .cart-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
+  .paragraph {
+    background-color: rgb(36, 36, 36);
+    text-align: center;
+    justify-content: center;
+    font-weight: bold;
+    width: 100%;
+    padding: 5px;
+  }
 
-    .product-item,
-    .cart-item {
-      border: 1px solid #ccc;
-      padding: 10px;
-      border-radius: 5px;
-      width: 200px;
-    }
+  .product-list,
+  .cart-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
 
-    .product-item img {
-      max-width: 100%;
-      height: auto;
-    }
+  .product-item,
+  .cart-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    width: 200px;
+  }
 
-    .product-item h3,
-    .cart-item h3 {
-      margin: 10px 0;
-    }
+  .product-item img {
+    max-width: 100%;
+    height: auto;
+  }
 
-    footer {
-      background-color: #333333;
-      color: #ffffff;
-      text-align: center;
-      padding: 10px 0;
-      width: 100%;
-      bottom: 0;
-    }
+  .product-item h3,
+  .cart-item h3 {
+    margin: 10px 0;
+  }
 
-    .product--card {
-      flex: 0 0 calc(33.333% - 20px);
-      box-sizing: border-box;
-      padding: 20px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      display: flex;
-      flex-direction: column;
-      border: 3px solid rgba(0, 31, 85, 0.2);
-      border-radius: 15px;
-      background-color: rgb(220, 220, 220);
-      margin: 10px;
-    }
+  footer {
+    background-color: #333333;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    bottom: 0;
+  }
 
-    .product-card {
-      flex: 0 0 calc(33.333% - 20px);
-      box-sizing: border-box;
-      padding: 20px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      display: flex;
-      flex-direction: column;
-      border: 3px solid rgba(0, 31, 85, 0.2);
-      border-radius: 15px;
-      background-color: rgb(246, 246, 246);
-    }
+  .product--card {
+    flex: 0 0 calc(33.333% - 20px);
+    box-sizing: border-box;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    border: 3px solid rgba(0, 31, 85, 0.2);
+    border-radius: 15px;
+    background-color: rgb(220, 220, 220);
+    margin: 10px;
+  }
 
-    .product-card .product--title {
-      font-weight: bold;
-      font-size: 1.5em;
-      text-align: center;
-      padding: 5px;
-    }
+  .product-card {
+    flex: 0 0 calc(33.333% - 20px);
+    box-sizing: border-box;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    border: 3px solid rgba(0, 31, 85, 0.2);
+    border-radius: 15px;
+    background-color: rgb(246, 246, 246);
+  }
 
-    .product-card .product--stock {
-      font-size: 1.8em;
-      text-align: center;
-      padding: 5px;
-    }
+  .product-card .product--title {
+    font-weight: bold;
+    font-size: 1.5em;
+    text-align: center;
+    padding: 5px;
+  }
 
-    .products .title {
-      text-align: center;
-      padding-bottom: 20px;
-      font-size: 32px;
-    }
-  </style>
+  .product-card .product--stock {
+    font-size: 1.8em;
+    text-align: center;
+    padding: 5px;
+  }
+
+  .products .title {
+    text-align: center;
+    padding-bottom: 20px;
+    font-size: 32px;
+  }
+
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+    height: 10vh;
+    margin: 10px;
+  }
+
+  .btn-prima {
+    background-color: #7bb62e;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: bold;
+    font-size: 30px;
+
+  }
+
+  .btn-secon {
+    background-color: #0cc0df;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 30px;
+  }
+
+  .btn-prima:hover,
+  .btn-secon:hover {
+    background-color: #44bb87;
+  }
+</style>
 
 </body>

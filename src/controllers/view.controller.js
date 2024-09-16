@@ -1,5 +1,6 @@
 import ProductManager from '../dao/factory.js';
 import CartManager from "../dao/db/cartManagerDb.js";
+import configObject from '../config/config.js';
 
 const productManager = new ProductManager();
 const cartManager = new CartManager();
@@ -67,23 +68,9 @@ export const renderProductDetails = async (req, res) => {
     }
 };
 
-export const renderCart = async (req, res) => {
+export const renderCart = (req, res) => {
     const cartId = req.params.cid;
-    try {
-        const carrito = await cartManager.getCartById(cartId);
-        if (!carrito) {
-            return res.status(404).json({ error: "Carrito no encontrado" });
-        }
-        const productosEnCarrito = carrito.products.map(item => ({
-            product: item.product.toObject(),
-            quantity: item.quantity,
-            total: item.quantity * item.product.toObject()
-        }));
-        res.render("carts", { productos: productosEnCarrito });
-    } catch (error) {
-        console.error("Error al obtener el carrito", error);
-        res.status(500).json({ error: "Error interno del servidor" });
-    }
+    res.render('carts', { cartId , isRegisterPage: true, user: req.session.user });
 };
 
 export const renderRegister = (req, res) => {

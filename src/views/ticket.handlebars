@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Summary</title>
+</head>
+<body>
+    <h1>Purchase Summary</h1>
+
+    <h2>Ticket Details</h2>
+    <p><strong>Code:</strong> {{ticket.code}}</p>
+    <p><strong>Date:</strong> {{ticket.purchase_datetime}}</p>
+    <p><strong>Total Amount:</strong> ${{ticket.amount}}</p>
+    <p><strong>Purchaser:</strong> {{ticket.purchaser}}</p>
+
+    <h2>Products Purchased</h2>
+    <ul>
+        {{#each ticket.productsPurchased}}
+            <li>{{this.title}} - Quantity: {{this.quantity}} - Price: ${{this.price}}</li>
+        {{/each}}
+    </ul>
+
+    {{#if ticket.productsOutOfStock.length}}
+        <h2>Products Out of Stock</h2>
+        <ul>
+            {{#each ticket.productsOutOfStock}}
+                <li>{{this.title}} - Unavailable Quantity: {{this.quantityUnavailable}}</li>
+            {{/each}}
+        </ul>
+    {{/if}}
+
+    <div>
+        <a href="/products">Back to Products</a>
+    </div>
+</body>
+</html>

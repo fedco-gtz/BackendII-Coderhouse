@@ -25,15 +25,16 @@ class UserController {
     }
 
     async login(req, res) {
-        const {email, password} = req.body; 
+        const {email, password, cartId} = req.body; 
 
         try {
-            const user = await userService.loginUser(email, password);
+            const user = await userService.loginUser(email, password, cartId);
 
             const token = jwt.sign({
                 usuario: `${user.first_name} ${user.last_name}`,
                 email: user.email,
-                role: user.role
+                role: user.role,
+                cart: user.cartId
             }, "backendDos", {expiresIn: "1h"});
 
             res.cookie("tokenCookie", token, {maxAge: 3600000, httpOnly: true});

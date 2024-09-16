@@ -20,8 +20,8 @@ export const removeProductFromCart = async (req, res) => {
 
 export const purchaseCart = async (req, res) => {
   try {
-    const ticketDTO = await CartService.purchaseCart(req.user.cart, req.user.email);
-    res.render('ticket', { ticket: ticketDTO, user: req.user });
+    const ticketDto = await CartService.purchaseCart(req.user.cart, req.user.email);
+    res.render('ticket', { ticket: ticketDto, user: req.user });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

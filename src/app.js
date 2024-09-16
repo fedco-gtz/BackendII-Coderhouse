@@ -14,6 +14,8 @@ import initializePassport from './config/passport.config.js';
 import configObject from './config/config.js';
 import passport from 'passport';
 import cors from 'cors';
+import productRepository from './repositories/product.repository.js';
+import cartRepository from './repositories/cart.repository.js';
 import './database.js'
 
 const app = express();

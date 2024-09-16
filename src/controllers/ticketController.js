@@ -1,8 +1,8 @@
-import TicketRepository from '../repositories/ticketRepository.js';
+import ticketRepository from "../repositories/ticket.repository.js";
 
 export const getTicket = async (req, res) => {
   try {
-    const ticket = await TicketRepository.getTicketById(req.params.id);
+    const ticket = await ticketRepository.getTicketById(req.params.id);
     if (!ticket) {
       return res.status(404).json({ message: 'Ticket not found' });
     }
@@ -14,7 +14,7 @@ export const getTicket = async (req, res) => {
 
 export const getAllTickets = async (req, res) => {
   try {
-    const tickets = await TicketRepository.getAllTickets();
+    const tickets = await ticketRepository.getAllTickets();
     res.status(200).json(tickets);
   } catch (error) {
     res.status(500).json({ message: error.message });

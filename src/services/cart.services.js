@@ -1,8 +1,8 @@
 import cartRepository from '../repositories/cart.repository.js';
 import CartDto from '../dto/cart.dto.js';
 import productRepository from '../repositories/product.repository.js';
-/*import TicketService from './ticketService.js';
-import TicketDTO from '../dto/ticketDTO.js'; */
+import ticketDto from '../dto/ticket.dto.js';
+import TicketService from './ticket.service.js';
 
 class CartService {
     async getCartById(cartId) {
@@ -84,7 +84,7 @@ class CartService {
             cart.products = [];
             await cartRepository.updateCart(cartId, cart);
 
-            return new TicketDTO(ticket, productsPurchased, productsOutOfStock);
+            return new ticketDto(ticket, productsPurchased, productsOutOfStock);
         }
 
         throw new Error('No products available for purchase');

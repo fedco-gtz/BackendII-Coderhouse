@@ -1,37 +1,39 @@
-<header>
-    <div class="paragraph">
-        <p>Bienvenida/o {{user.email}} - {{user.role}}</p>
-    </div>
-    <div class="nav-container">
-        <nav>
-            <ul>
-                <li><a href="/api/sessions/profile">MI PERFIL</a></li>
-                <li><a href="/api/sessions/logout">CERRAR SESIÓN</a></li>
-            </ul>
-        </nav>
-    </div>
-    <div class="logo-container">
-        <img src="images/pages/logo.png" alt="Logo de VerdeVital" class="logo">
-    </div>
-</header>
-<div class="text">
-    <p>ENVIOS GRATIS: 🛵 CABA $20.000 - 📦 TODO EL PAIS $50.000 Y HASTA 3 CUOTAS S/ INTERÉS 💳 - 10% PAGO EFECTIVO
-        💸</p>
-</div>
+<body>
+    <header>
+        <div class="paragraph">
+            <p>Bienvenida/o {{user.email}} - {{user.role}} </p>
+        </div>
+        <div class="nav-container">
+            <nav>
+                <ul>
+                    <li><a href="/api/sessions/profile">MI PERFIL</a></li>
+                    <li><a href="/api/sessions/logout">CERRAR SESIÓN</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="logo-container">
+            <img src="images/pages/logo.png" alt="Logo de VerdeVital" class="logo">
+        </div>
+    </header>
 
-<div class="button-container">
-    <a href="products" class="btn btn-primary">Productos</a>
-    <a href="realtimeproducts" class="btn btn-secondary">Administrar Productos</a>
-    <a href="/carts/66e613fc1f19fcf335794286" class="btn btn-tertiary">Carrito</a>
-</div>
+    <div class="text">
+        <p>ENVIOS GRATIS: 🛵 CABA $20.000 - 📦 TODO EL PAIS $50.000 Y HASTA 3 CUOTAS S/ INTERÉS 💳 - 10% PAGO EFECTIVO
+            💸</p>
+    </div>
 
-<footer>
-    <p>&copy; 2024 <span style="color: rgb(193, 255, 114); font-weight: bold;">Verde</span><span
-            style="color: rgb(12, 192, 223); font-weight: bold;">Vital</span>. Todos los derechos reservados.</p>
-</footer>
+    <div class="button-container">
+        <a href="products" class="btn btn-primary">Productos</a>
+        <a href="realtimeproducts" class="btn btn-secondary">Administrar Productos</a>
+        <a href="/carts/{{user.cartId}}" class="btn btn-tertiary">Carrito</a>
+    </div>
 
+    <footer>
+        <p>&copy; 2024 <span style="color: rgb(193, 255, 114); font-weight: bold;">Verde</span><span
+                style="color: rgb(12, 192, 223); font-weight: bold;">Vital</span>. Todos los derechos reservados.</p>
+    </footer>
+</body>
 <style>
- * {
+    * {
         font-family: Arial, sans-serif;
         margin: 0;
         padding: 0;
