@@ -3,7 +3,7 @@ const router = express.Router();
 import passport from "passport";
 import userController from "../controllers/user.controller.js";
 
-router.post("/register", passport.authenticate("register", { failureRedirect: "failed" }), userController.register);
+router.post("/register", userController.register);
 router.post("/login", passport.authenticate("login", { failureRedirect: "failed" }), userController.login);
 router.get("/current", passport.authenticate("jwt", { session: false }), userController.current);
 router.get("/logout", userController.logout);
@@ -12,3 +12,4 @@ router.get("/github", passport.authenticate("github", { scope: ["user:email"] })
 router.get("/githubcallback", passport.authenticate("github", { failureRedirect: "/login" }), userController.githubCallback);
 
 export default router;
+

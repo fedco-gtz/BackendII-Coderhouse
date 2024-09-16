@@ -24,16 +24,17 @@
     <section class="products">
       <h1 class="title">CARRITO DE COMPRAS</h1>
       <div class="product-card">
-        {{#each productos}}
-        <div class="product--card">
-          <h1 class="product--title">{{this.product.title}}</h1>
+        {{#each products}}
+        <div class="product--card"> 
+          <h1 class="product--title">{{this.products.title}}</h1>
           <p class="product--stock">Precio unitario: ${{this.product.price}} | Cantidad: {{this.quantity}}</p>
+          <button onclick="removeFromCart('{{this.product._id}}')">Remove</button>
         </div>
         {{/each}}
       </div>
       <br>
       <section class="container">
-                <div>
+        <div>
           <a class="btn-secon" href="/api/sessions/products">IR A PRODUCTOS</a>
         </div>
         <form action="/carts/{{user.cartId}}/purchase" method="POST">

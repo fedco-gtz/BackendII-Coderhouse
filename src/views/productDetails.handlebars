@@ -11,13 +11,40 @@
                     <h2 class="product--stock">Stock disponible: {{stock}}</h2>
                     <h2 class="product--stock">Categoría: {{category}}</h2>
                     <br>
-                    <a href="" class="btn-link"><button class="btn-secon">AGREGAR AL CARRITO</button></a>
+                    <button onclick="addToCart('{{this._id}}')">Add to Cart</button>
+                    <br>
+                    <a href="/api/carts/add-product" class="btn-link"><button class="btn-secon">AGREGAR AL
+                            CARRITO</button></a>
                 </div>
             </div>
         </section>
     </main>
     <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
     <script src="js/main.js"></script>
+    <script>
+        function addToCart(productId) {
+            fetch('/api/carts/add-product', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ productId }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.message) {
+                        alert('Product added to cart');
+                    } else {
+                        alert('Error adding product to cart');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+  }
+</script>
+
     <style>
         * {
             font-family: Arial, sans-serif;

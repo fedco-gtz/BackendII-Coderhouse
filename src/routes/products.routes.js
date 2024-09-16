@@ -3,19 +3,12 @@ import { getAllProducts, createProduct, updateProduct, deleteProduct, getProduct
 
 const router = express.Router();
 
-// Método GET para visualizar los productos por ID
-// router.get("/api/products/:pid", getProductById);
-
-// Método GET para visualizar todos los productos con paginación, filtrado y ordenamiento
 router.get("/api/products", getAllProducts);
 
-// Método POST para agregar un nuevo producto
 router.post("/api/sessions/realtimeproducts", createProduct);
 
-// Método PUT para actualizar un producto por ID
 router.put("/api/products/:pid", updateProduct);
 
-// Método DELETE para eliminar un producto por ID
 router.delete("/api/sessions/realtimeproducts", deleteProduct);
 
 export default router;

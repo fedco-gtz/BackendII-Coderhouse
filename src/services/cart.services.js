@@ -18,7 +18,7 @@ class CartService {
         const product = await productRepository.getProductById(productId);
 
         if (!cart || !product) {
-            throw new Error('Cart or Product not found');
+            throw new Error('Carrito o Producto no encontrado');
         }
 
         const productIndex = cart.products.findIndex(p => p.product._id.equals(productId));

@@ -45,7 +45,8 @@
                     <br>
                     <button onclick="addToCart('{{this._id}}')">Add to Cart</button>
                     <br>
-                    <a href="" class="btn-link"><button class="btn-secon">AGREGAR AL CARRITO</button></a>
+                    <a href="/api/carts/add-product" class="btn-link"><button class="btn-secon">AGREGAR AL
+                            CARRITO</button></a>
                 </div>
                 {{/each}}
             </div>
@@ -61,7 +62,7 @@
                 <p class="pagination-text">Página {{currentPage}} de {{totalPages}}</p>
             </div>
             <div>
-                <a href="/carts"Volver al Carrito</a>
+                <a href="/carts" Volver al Carrito</a>
             </div>
         </section>
     </main>
@@ -70,24 +71,9 @@
 <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
 <script src="js/main.js"></script>
 <script>
-    document.getElementById('sortPrice').addEventListener('change', function () {
-        const sortOrder = this.value;
-        const currentUrl = new URL(window.location.href);
-        const page = currentUrl.searchParams.get('page') || 1;
-        currentUrl.searchParams.set('sort', sortOrder);
-        currentUrl.searchParams.set('page', page);
-        window.location.href = currentUrl.toString();
-    });
-
-    window.addEventListener('load', function () {
-        const urlParams = new URLSearchParams(window.location.search);
-        const sortParam = urlParams.get('sort');
-        if (sortParam) {
-            document.getElementById('sortPrice').value = sortParam;
-        }
-    });
 
     function addToCart(productId) {
+        console.log(productId)
         fetch('/api/carts/add-product', {
             method: 'POST',
             headers: {
@@ -107,7 +93,6 @@
                 console.error('Error:', error);
             });
     }
-
 </script>
 <style>
     * {
