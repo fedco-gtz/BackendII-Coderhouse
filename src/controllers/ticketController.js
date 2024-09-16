@@ -4,7 +4,7 @@ export const getTicket = async (req, res) => {
   try {
     const ticket = await ticketRepository.getTicketById(req.params.id);
     if (!ticket) {
-      return res.status(404).json({ message: 'Ticket not found' });
+      return res.status(404).json({ message: 'Ticket no encontrado' });
     }
     res.status(200).json(ticket);
   } catch (error) {

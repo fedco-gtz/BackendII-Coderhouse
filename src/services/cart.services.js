@@ -8,7 +8,7 @@ class CartService {
     async getCartById(cartId) {
         const cart = await cartRepository.getCartById(cartId);
         if (!cart) {
-            throw new Error('Cart not found');
+            throw new Error('Carrito no encontrado');
         }
         return new CartDto(cart);
     }
@@ -37,7 +37,7 @@ class CartService {
         const cart = await cartRepository.getCartById(cartId);
 
         if (!cart) {
-            throw new Error('Cart not found');
+            throw new Error('Carrito no encontrado');
         }
 
         const productIndex = cart.products.findIndex(p => p.product._id.equals(productId));
@@ -47,14 +47,14 @@ class CartService {
             const updatedCart = await cartRepository.updateCart(cartId, cart);
             return new CartDto(updatedCart);
         } else {
-            throw new Error('Product not found in cart');
+            throw new Error('Producto no encontrado en el carrito');
         }
     }
 
     async purchaseCart(cartId, userEmail) {
         const cart = await cartRepository.getCartById(cartId);
         if (!cart) {
-            throw new Error('Cart not found');
+            throw new Error('Carrito no encontrado');
         }
 
         let totalAmount = 0;
@@ -87,13 +87,13 @@ class CartService {
             return new ticketDto(ticket, productsPurchased, productsOutOfStock);
         }
 
-        throw new Error('No products available for purchase');
+        throw new Error('No hay productos disponibles para comprar');
     }
 
     async clearCart(cartId) {
         const cart = await cartRepository.getCartById(cartId);
         if (!cart) {
-            throw new Error('Cart not found');
+            throw new Error('Carrito no encontrado');
         }
 
         cart.products = [];

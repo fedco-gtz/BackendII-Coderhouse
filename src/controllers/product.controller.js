@@ -47,7 +47,7 @@ export const getAllProducts = async (req, res) => {
       user: req.user,
     });
   } catch (error) {
-    res.status(500).render('error', { message: 'Error loading products', error });
+    res.status(500).render('error', { message: 'Error al cargar productos', error });
   }
 };
 
@@ -56,6 +56,6 @@ export const getProductForEdit = async (req, res) => {
     const productDTO = await ProductService.getProductById(req.params.pid);
     res.render('editProduct', { product: productDTO, user: req.user });
   } catch (error) {
-    res.status(500).render('error', { message: 'Error loading product for edit', error });
+    res.status(500).render('error', { message: 'Error al cargar el producto para editarlo', error });
   }
 };

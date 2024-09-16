@@ -3,7 +3,7 @@ import CartService from '../services/cart.services.js';
 export const addProductToCart = async (req, res) => {
   try {
     const cart = await CartService.addProductToCart(req.user.cart, req.body.productId);
-    res.status(200).json({ message: 'Product added to cart', cart });
+    res.status(200).json({ message: 'Producto agregado al carrito', cart });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -12,7 +12,7 @@ export const addProductToCart = async (req, res) => {
 export const removeProductFromCart = async (req, res) => {
   try {
     const cart = await CartService.removeProductFromCart(req.user.cart, req.body.productId);
-    res.status(200).json({ message: 'Product removed from cart', cart });
+    res.status(200).json({ message: 'Producto eliminado del carrito', cart });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -30,7 +30,7 @@ export const purchaseCart = async (req, res) => {
 export const clearCart = async (req, res) => {
   try {
     const cart = await CartService.clearCart(req.user.cart);
-    res.status(200).json({ message: 'Cart cleared', cart });
+    res.status(200).json({ message: 'Carrito borrado', cart });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
